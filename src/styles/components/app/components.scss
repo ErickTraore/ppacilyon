@@ -1,0 +1,204 @@
+body {
+  background-color: rgb(193, 224, 193);
+  border-image: auto;
+}
+.App {
+  width: auto;
+  height: auto;
+  &__header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: darkblue;
+    justify-content: center;
+    &__logo {
+      width: 20%;
+      height: auto;
+      display: flex;
+      padding: 10px;
+      &__img {
+        width: 100%;
+        height: auto;
+        display: flex;
+        border:  solid 3px white;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+  .App-header-hamburger {
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto auto;
+    justify-content: center;
+  }
+  .App-header-hamburger-img {
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding-top: 10px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  
+  }
+  
+  .App-header-hamburger-img-panneau {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    border:  solid 3px white;
+    border-radius: 10px;
+    margin: 10px;
+  }
+  .header {
+    width: auto;
+    height: auto;
+    display: flex;
+    border: solid 3px red;
+  }
+  
+  .hamburger-icon {
+    font-size: 24px;
+    cursor: pointer;
+    border: none;
+    display: none; /* Par défaut, le bouton hamburger est masqué */
+    border-radius: 10px; 
+  
+  }
+  
+  .menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%; /* Assurez-vous que le menu prend toute la largeur */
+    background: #333;
+    color: white;
+    list-style: none;
+    padding: 10px;
+    border-radius: 4px;
+    justify-content: center; /* Centre le contenu horizontalement */
+    align-items: center; /* Centre le contenu verticalement */
+  }
+  
+  .menu.open {
+    display: flex; /* Utilisez flex pour centrer le contenu */
+  }
+  
+  .menu ul {
+    margin: 0;
+    padding: 0;
+    display: flex; /* Utilisez flex pour centrer le contenu */
+    flex-direction: column; /* Les éléments du menu en colonne pour les petits écrans */
+    align-items: center;
+  }
+  
+  .menu li {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .menu li:hover {
+    background: #555;
+  }
+  
+  .content {
+    margin-top: 20px;
+  }
+  
+  .horizontal-menu {
+    display: flex;
+    background: #333;
+    padding: 10px;
+    margin-top: 16px;
+    list-style: none;
+    justify-content: center; /* Centrer les éléments horizontalement */
+    align-items: center; /* Centrer les éléments verticalement */
+    border-radius: 10px;
+    border:  solid 3px white;
+  }
+  
+  .horizontal-menu li {
+    padding: 0 20px;
+    cursor: pointer;
+  }
+  
+  .horizontal-menu li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .horizontal-menu li:hover {
+    background: #555;
+  }
+  
+  /* Media Query pour les écrans de taille inférieure à une tablette */
+  @media (max-width: 768px) {
+    .hamburger-icon {
+      display: block; /* Afficher le bouton hamburger uniquement pour les petits écrans */
+      margin-right: 10px;
+    }
+  
+    .horizontal-menu {
+      display: none; /* Masquer le menu horizontal sur les petits écrans */
+    }
+  
+    .menu {
+      width: 9rem;
+      position: absolute;
+      flex-direction: column; /* Pour les petits écrans, afficher les éléments en colonne */
+      top: 150px; 
+      left: 60px;/* Ajustement pour éviter de chevaucher le logo et le bouton hamburger */
+    }
+  
+    .menu-logo {
+      display: flex; /* S'assurer que le logo est affiché dans le menu hamburger */
+      height: 35px; /* Réduire la taille du logo pour mieux s'adapter */
+      margin-right: 10px; /* Ajout d'un espace entre le logo et l'icône du menu */
+      border-radius: 10px; 
+      margin-bottom: 16px;
+    }
+  
+    .logo-and-icon {
+      width: 100%;
+      justify-content: space-around; /* Espace entre le logo et l'icône du menu */
+      padding: 10px;
+    }
+  }
+  
+  /* Media Query pour les écrans de taille inférieure à une tablette */
+  @media (max-width: 600px) {
+    .hamburger-icon {
+      display: block; /* Afficher le bouton hamburger uniquement pour les petits écrans */
+    }
+  
+    .horizontal-menu {
+      display: none; /* Masquer le menu horizontal sur les petits écrans */
+    }
+  
+    .menu {
+      position: absolute;
+      flex-direction: column; /* Pour les petits écrans, afficher les éléments en colonne */
+      top: 60px; /* Ajustement pour éviter de chevaucher le logo et le bouton hamburger */
+    }
+  
+    .menu-logo {
+      display: block; /* S'assurer que le logo est affiché dans le menu hamburger */
+      height: 32px; /* Réduire la taille du logo pour mieux s'adapter */
+      margin-right: 10px; /* Ajout d'un espace entre le logo et l'icône du menu */
+      margin-bottom : 20px; /* Ajout d'un espace entre le logo et l'icône du menu */
+      border-radius: 10px;}
+  
+    .logo-and-icon {
+      width: 100%;
+      justify-content: space-around; /* Espace entre le logo et l'icône du menu */
+      padding: 10px;
+    }
+  }
+  
+  

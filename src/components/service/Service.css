@@ -1,0 +1,26 @@
+.parallax {
+    /* Votre image */
+    background-image: url('/src/assets/design3.png');
+  
+    /* Une hauteur spécifique */
+    height: 1200px;
+  
+    /* L'effet de parallax */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  h3{
+    color: white;
+    font-size: 75px;
+    color: darkgreen;
+  }
+
+  h3:nth-child(2){
+    padding-top: 20rem;
+    color: white;
+    font-size: 75px;
+    color: darkgreen;
+  }
