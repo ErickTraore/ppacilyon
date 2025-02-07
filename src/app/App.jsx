@@ -4,9 +4,13 @@ import HamburgerIcon from '../components/hamburgerIcon/HamburgerIcon';
 import PageContent from '../components/pageContent/PageContent';
 import logo from '../assets/logoppaci514.png';
 import panneau from '../assets/logoppaci3.png';
-import Register from '../components/Register';
+import Register from '../components/register/Register';
 import Footer from '../components/footer/Footer';
-import Login from '../components/Login';
+import Login from '../components/login/Login';
+import iconLoginon from '../assets/sign/signin_on_icon.png';
+import iconLoginof from '../assets/sign/signin_of_icon.png';
+import iconRegister from '../assets/sign/signup_icon.png';
+import './App.css';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,6 +36,17 @@ function App() {
             <img src={panneau} className="App__header__hamburger__img__panneau" alt="logo" />
             <HamburgerIcon isOpen={isOpen} toggleMenu={toggleMenu} />
           </div>
+          <div className="App__header__hamburger__sign">
+            <div className="App__header__hamburger__sign__connect">
+              <img src={iconLoginof} alt="Icône Login" /> 
+              <a href="#services" onClick={() => navigateTo('login')}>Login</a>
+            </div>
+            <div className="App__header__hamburger__sign__connect">
+              <img src={iconRegister} alt="Icône Register" /> 
+              <a href="#services" onClick={() => navigateTo('register')}>Register</a>
+            </div>
+          </div>
+          
           <nav className={`menu ${isOpen ? 'open' : ''}`}>
             <ul>
               <li onClick={() => navigateTo('home')}>Home</li>
@@ -46,14 +61,10 @@ function App() {
             <li><a href="#home" onClick={() => navigateTo('home')}>Accueil</a></li>
             <li><a href="#services" onClick={() => navigateTo('services')}>Adhesion</a></li>
             <li><a href="#services" onClick={() => navigateTo('cotisation')}>Cotisation</a></li>
-            <li><a href="#services" onClick={() => navigateTo('login')}>Login</a></li>
-            <li><a href="#services" onClick={() => navigateTo('register')}>Register</a></li>
             <li><a href="#contact" onClick={() => navigateTo('contact')}>Contact</a></li>
           </ul>
         </div>
       </header>
-      <div> <h1>Inscription</h1> <Register /> </div>
-      <div> <h1>Connexion</h1> <Login /> </div>
       <div><PageContent activePage={activePage} /></div>
       <Footer />
     </div>
