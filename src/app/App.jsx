@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/main.scss'
 import HamburgerIcon from '../components/hamburgerIcon/HamburgerIcon';
 import PageContent from '../components/pageContent/PageContent';
@@ -16,6 +16,13 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [activePage, setActivePage] = useState('home');
 
+  useEffect(() => {
+    const hash = window.location.hash.slice(1); // Enlève le '#' du début
+    if (hash) {
+      setActivePage(hash);
+    }
+  }, []);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -23,6 +30,7 @@ function App() {
   const navigateTo = (page) => {
     setActivePage(page);
     setIsOpen(false); // Ferme le menu après la navigation
+    window.location.hash = page; // Met à jour l'URL
   };
 
   return (
@@ -39,28 +47,24 @@ function App() {
           <div className="App__header__hamburger__sign">
             <div className="App__header__hamburger__sign__connect">
               <img src={iconLoginof} alt="Icône Login" /> 
-              <a href="#services" onClick={() => navigateTo('login')}>Login</a>
+              <a href="#login" onClick={() => navigateTo('login')}>Login</a>
             </div>
             <div className="App__header__hamburger__sign__connect">
               <img src={iconRegister} alt="Icône Register" /> 
-              <a href="#services" onClick={() => navigateTo('register')}>Register</a>
+              <a href="#register" onClick={() => navigateTo('register')}>Register</a>
             </div>
           </div>
           
           <nav className={`menu ${isOpen ? 'open' : ''}`}>
             <ul>
-              <li onClick={() => navigateTo('home')}>Home</li>
-              <li onClick={() => navigateTo('services')}>Services</li>
-              <li onClick={() => navigateTo('contact')}>Contact</li>
-              <li onClick={() => navigateTo('login')}>Login</li>
-              <li onClick={() => navigateTo('register')}>Register</li>
-              <li onClick={() => navigateTo('cotisation')}>Cotisation</li>
+              <li onClick={() => navigateTo('#home')}>Home</li>
+              <li onClick={() => navigateTo('#contact')}>Contact</li>
+              <li onClick={() => navigateTo('#cotisation')}>Cotisation</li>
             </ul>
           </nav>
           <ul className="horizontal-menu">
             <li><a href="#home" onClick={() => navigateTo('home')}>Accueil</a></li>
-            <li><a href="#services" onClick={() => navigateTo('services')}>Adhesion</a></li>
-            <li><a href="#services" onClick={() => navigateTo('cotisation')}>Cotisation</a></li>
+            <li><a href="#cotisation" onClick={() => navigateTo('cotisation')}>Cotisation</a></li>
             <li><a href="#contact" onClick={() => navigateTo('contact')}>Contact</a></li>
           </ul>
         </div>

@@ -19,7 +19,7 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/login', {
+      const response = await fetch('http://localhost:5000/api/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,6 +33,10 @@ const Login = () => {
       if (response.ok) {
         // Dispatch the loginUser action
         dispatch(loginUser(data.token));
+        if (data.redirectUrl) {
+          window.location.href = data.redirectUrl; // Redirection vers la page de connexion
+          window.location.reload();
+      }
       } else {
         console.error('Login failed:', data.message);
       }

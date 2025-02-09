@@ -1,4 +1,3 @@
-// import  { Redirect } from 'react-router-dom'
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
@@ -54,21 +53,24 @@ const Register = () => {
       if (response.ok) {
         data = await response.json();
         console.log('Registration response:', data);
-        dispatch(registerUser({ email, password }));
-        return;
-        // return <Redirect to='/login' />
+        dispatch(registerUser({ email, password, token: data.token }));
+        if (data.redirectUrl) {
+            window.location.href = data.redirectUrl; // Redirection vers la page de connexion
+            window.location.reload();
+        }
       } else {
         data = await response.json();
         if (data.message === 'Invalid email or password') {
           setEmailError('Adresse e-mail ou mot de passe invalide');
           setPasswordError('Adresse e-mail ou mot de passe invalide');
-          console.error('Registration failed: Invalid email or password');
         } else {
           console.error('Registration failed:', data.message);
-        } 
+          setEmailError(data.message);
+        }
       }
     } catch (error) {
       console.error('Error during registration:', error);
+      setEmailError('Une erreur est survenue lors de l\'inscription');
     }
   };
 
@@ -81,18 +83,18 @@ const Register = () => {
         placeholder="Adresse e-mail"
         required
       />
-      {emailError && <p>{emailError}</p>}
+      {emailError && <p className="error">{emailError}</p>}
       <input
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
+        placeholder="Mot de passe"
         required
       />
-      {passwordError && <p>{passwordError}</p>}
+      {passwordError && <p className="error">{passwordError}</p>}
       <button type="submit" disabled={loading}>S'inscrire</button>
       {loading && <p>Chargement...</p>}
-      {error && <p>Erreur : {error}</p>}
+      {error && <p className="error">Erreur : {error}</p>}
     </form>
   );
 };
