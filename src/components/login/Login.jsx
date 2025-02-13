@@ -17,7 +17,6 @@ const Login = () => {
       console.error('Email and password are required');
       return;
     }
-
     try {
       const response = await fetch('http://localhost:5000/api/users/login', {
         method: 'POST',
@@ -26,7 +25,6 @@ const Login = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-
       const data = await response.json();
       console.log('Login response:', data);
 
