@@ -1,31 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMessages, addMessage } from '../../actions/messageActions';
 
 const Messages = () => {
-  const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState({ tittle: '', content: '' });
+  const [newMessage, setNewMessage] = useState({ tittle: '', content: '', image: '', video: '' });
+  const dispatch = useDispatch();
+  const messages = useSelector((state) => state.messages.messages);
 
   useEffect(() => {
-    fetchMessages();
-  }, []);
-
-  const fetchMessages = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/messages/', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          'Content-Type': 'application/json'
-        }
-      });
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      setMessages(data);
-    } catch (error) {
-      console.error('Error fetching messages:', error);
-    }
-  };
+    dispatch(fetchMessages());
+  }, [dispatch]);
 
   const handleInputChange = (e) => {
     setNewMessage({ ...newMessage, [e.target.name]: e.target.value });
@@ -33,23 +17,9 @@ const Messages = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch('http://localhost:5000/api/messages/new/', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newMessage)
-      });
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      setNewMessage({ tittle: '', content: '' });
-      fetchMessages();
-    } catch (error) {
-      console.error('Error creating message:', error);
-    }
+    await dispatch(addMessage(newMessage));
+    setNewMessage({ tittle: '', content: '', image: '', video: '' });
+    dispatch(fetchMessages()); // Récupère les messages après l'ajout
   };
 
   return (
@@ -72,6 +42,20 @@ const Messages = () => {
           placeholder="Contenu du message"
           required
         />
+        <input
+          type="text"
+          name="image"
+          value={newMessage.image}
+          onChange={handleInputChange}
+          placeholder="URL de l'image"
+        />
+        <input
+          type="text"
+          name="video"
+          value={newMessage.video}
+          onChange={handleInputChange}
+          placeholder="URL de la vidéo"
+        />
         <button type="submit">Envoyer le message</button>
       </form>
 
@@ -80,6 +64,13 @@ const Messages = () => {
         <div key={message.id}>
           <h3>{message.tittle}</h3>
           <p>{message.content}</p>
+          {message.image && <img src={message.image} alt="Image du message" />}
+          {message.video && (
+            <video controls>
+              <source src={message.video} type="video/mp4" />
+              Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+          )}
           <p>Expédié par: {message.User ? message.User.email : 'Utilisateur inconnu'}</p>
         </div>
       ))}
