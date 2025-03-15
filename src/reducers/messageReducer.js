@@ -1,19 +1,20 @@
-// src/reducers/messageReducer.js
+import { FETCH_MESSAGES, ADD_MESSAGE } from '../actions/types';
+
 const initialState = {
-  messages: [],
+  messages: []
 };
 
 const messageReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'FETCH_MESSAGES_SUCCESS':
+  switch(action.type) {
+    case FETCH_MESSAGES:
       return {
         ...state,
-        messages: action.payload,
+        messages: action.payload
       };
-    case 'ADD_MESSAGE':
+    case ADD_MESSAGE:
       return {
         ...state,
-        messages: [...state.messages, action.payload],
+        messages: [...state.messages, action.payload]
       };
     default:
       return state;
