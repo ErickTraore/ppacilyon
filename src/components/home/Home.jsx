@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div>
       <div className='home'>
-        <h1>Parti des Peuples Africains - Côte d'Ivoire </h1>
+        <h2>Parti des Peuples Africains - Côte d'Ivoire </h2>
       </div>
      <Card />
     </div>

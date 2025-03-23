@@ -5,8 +5,8 @@ import PageContent from '../components/pageContent/PageContent';
 import logo from '../assets/logoppaci514.png';
 import panneau from '../assets/logoppaci3.png';
 import Footer from '../components/footer/Footer';
-import iconLoginof from '../assets/sign/signin_of_icon.png';
-import iconRegister from '../assets/sign/signup_icon.png';
+import iconLoginof from '../assets/sign/signin_of_icon_300x300.png';
+import iconRegister from '../assets/sign/icons8-registration-50.png';
 import './App.css';
 
 function App() {
@@ -32,40 +32,45 @@ function App() {
 
   return (
     <div className="App">
+      <div className="App__title">
+        <p><b> PPACI </b> (Parti des Peuples Africains - Côte d'Ivoire)</p>
+      </div>
       <header className="App__header">
         <div className="App__header__logo">
           <img src={logo} className="App__header__logo__img" alt="logo" />
         </div>
-        <div className="App__header__hamburger">
-          <div className="App__header__hamburger__img">
-            <img src={panneau} className="App__header__hamburger__img__panneau" alt="logo" />
-            <HamburgerIcon isOpen={isOpen} toggleMenu={toggleMenu} />
-          </div>
-          <div className="App__header__hamburger__sign">
-            <div className="App__header__hamburger__sign__connect">
-              <img src={iconLoginof} alt="Icône Login" /> 
-              <a href="#login" onClick={() => navigateTo('login')}>Login</a>
+          <div className="App__header__hamburger">
+            <div className="App__header__hamburger__img">
+              <img src={panneau} className="App__header__hamburger__img__panneau" alt="logo" />
+              <HamburgerIcon isOpen={isOpen} toggleMenu={toggleMenu} />
             </div>
-            <div className="App__header__hamburger__sign__connect">
-              <img src={iconRegister} alt="Icône Register" /> 
-              <a href="#register" onClick={() => navigateTo('register')}>Register</a>
-            </div>
+            <div className="App__header__hamburger__sign">
+              <div className="App__header__hamburger__sign__connect">
+                <img src={iconLoginof} alt="Icône Login" /> 
+                <a href="#login" onClick={() => navigateTo('login')}>Connection
+                </a>
+              </div>
+              <div className="App__header__hamburger__sign__connect">
+                <img src={iconRegister} alt="Icône Register" /> 
+                <a href="#register" onClick={() => navigateTo('register')}>Registration</a>
+              </div>
           </div>
-          
+        </div>
+      </header>
+      <div>
           <nav className={`menu ${isOpen ? 'open' : ''}`}>
             <ul>
-              <li onClick={() => navigateTo('#home')}>Home</li>
-              <li onClick={() => navigateTo('#contact')}>Contact</li>
-              <li onClick={() => navigateTo('#cotisation')}>Cotisation</li>
+              <li onClick={() => navigateTo('home')}>accueil</li>
+              <li onClick={() => navigateTo('cotisation')}>Cotisation</li>
+              <li onClick={() => navigateTo('contact')}>Contact</li>
             </ul>
           </nav>
           <ul className="horizontal-menu">
-            <li><a href="#home" onClick={() => navigateTo('home')}>Accueil</a></li>
+            <li><a href="#home" onClick={() => navigateTo('home')}>accueil</a></li>
             <li><a href="#cotisation" onClick={() => navigateTo('cotisation')}>Cotisation</a></li>
             <li><a href="#contact" onClick={() => navigateTo('contact')}>Contact</a></li>
           </ul>
-        </div>
-      </header>
+      </div>
       <div><PageContent activePage={activePage} /></div>
       <Footer />
     </div>

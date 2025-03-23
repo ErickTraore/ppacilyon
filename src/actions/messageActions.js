@@ -1,4 +1,4 @@
-import { FETCH_MESSAGES, ADD_MESSAGE } from './types';
+import { FETCH_MESSAGES } from './types';
 
 export const fetchMessages = () => {
   return async dispatch => {
