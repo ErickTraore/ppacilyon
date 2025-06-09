@@ -1,10 +1,13 @@
+html,
 body {
-  background-color: rgb(193, 224, 193);
-  border-image: auto;
+    background: #f1f1f1;
+    font-family: 'Merriweather', sans-serif;
+    padding: 0.5em;
 }
 .App {
-  width: auto;
+  width: 100%;
   height: auto;
+
   &__header {
     width: 100%;
     display: flex;
@@ -12,100 +15,117 @@ body {
     align-items: center;
     background-color: darkblue;
     justify-content: center;
+
     &__logo {
       width: 20%;
       height: auto;
       display: flex;
       padding: 10px;
+
       &__img {
         width: 100%;
         height: auto;
         display: flex;
-        border:  solid 3px white;
+        border: solid 3px white;
         border-radius: 10px;
       }
     }
-  }
-}
-  .App-header-hamburger {
-    width: 80%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto auto;
-    justify-content: center;
-  }
-  .App-header-hamburger-img {
-    width: 100%;
-    height: auto;
-    display: flex;
-    padding-top: 10px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-  
-  }
 
-  .App__header__hamburger__sign {
-    width: auto;
-    height: auto;
-    display: flex;
-    margin-top: 15px;
-    align-items: center;
-    justify-content: flex-end;
-    border-radius: 10px;
-    background-color: darkgrey;
-    &__connect {
-      width: auto;
-      height: 24px;
+    &__hamburger {
+      width: 80%;
+      height: auto;
       display: flex;
+      flex-direction: column;
       align-items: center;
+      margin: auto;
       justify-content: center;
-      margin: 5px 5px 5px 5px;
-      border-radius: 30%;
-      border: solid 3px white;
-      padding: 0px 10px;
-      img {
-        width: auto;
-        height: 100%;
+
+      &__img {
+        width: 100%;
+        height: auto;
         display: flex;
-        border-radius: 50px;
-      }
-      a {
-        width: auto;
-        height: 100%;
+        padding-top: 10px;
         align-items: center;
-        display: flex;
-        font-size: 12px;
+        justify-content: center;
+        border-radius: 10px;
+        &__panneau {
+              width: auto;
+              height: auto;
+              display: flex;
+              border-radius: 10px;
+              margin: 5px;
+              border-radius: 10px;
+              border: solid 3px white;
+            }
       }
+
+      &__sign {
+        width: auto;
+        height: auto;
+        display: flex;
+        margin-top: 15px;
+        align-items: center;
+        justify-content: flex-end;
+        border-radius: 10px;
+
+        &__connect {
+          width: auto;
+          height: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 5px;
+          border-radius: 30%;
+          border: solid 3px white;
+          padding: 0px 10px;
+          background-color: darkgrey;
+
+          img {
+            width: auto;
+            height: 100%;
+            display: flex;
+            border-radius: 50px;
+        
+          }
+
+          a {
+            width: auto;
+            height: 100%;
+            align-items: center;
+            display: flex;
+            font-size: 12px;
+          }
+        }
+      }
+
+      // &__img-panneau {
+      //   width: auto;
+      //   height: auto;
+      //   display: flex;
+      //   border: solid 3px white;
+      //   border-radius: 10px;
+      //   margin: 5px;
+      // }
     }
   }
- 
+}
 
-  .App__header__hamburger-img-panneau {
-    width: auto;
-    height: auto;
-    display: flex;
-    border:  solid 3px white;
-    border-radius: 10px;
-    margin: 5px;
-  }
-  .header {
-    width: auto;
-    height: auto;
-    display: flex;
-    border: solid 3px red;
-  }
-  
-  .hamburger-icon {
-    font-size: 24px;
-    cursor: pointer;
-    border: none;
-    display: none; /* Par défaut, le bouton hamburger est masqué */
-    border-radius: 10px; 
-  
-  }
+.header {
+  width: auto;
+  height: auto;
+  display: flex;
+  border: solid 3px red;
+}
+
+
+.hamburger-icon {
+  font-size: 24px;
+  cursor: pointer;
+  border: none;
+  display: none; /* Par défaut, le bouton hamburger est masqué */
+  border-radius: 10px;
+}
+
   
   .menu {
     display: none;
@@ -215,6 +235,63 @@ body {
   /* Media Query pour les écrans de taille inférieure à une tablette */
   @media (max-width: 600px) {
     .hamburger-icon {
+      display: block; /* Afficher le bouton hamburger uniquement pour les petits écrans */
+    }
+  
+    .horizontal-menu {
+      display: none; /* Masquer le menu horizontal sur les petits écrans */
+    }
+  
+    .menu {
+      position: absolute;
+      flex-direction: column; /* Pour les petits écrans, afficher les éléments en colonne */
+      top: 60px; /* Ajustement pour éviter de chevaucher le logo et le bouton hamburger */
+    }
+  
+    .menu-logo {
+      display: block; /* S'assurer que le logo est affiché dans le menu hamburger */
+      height: 32px; /* Réduire la taille du logo pour mieux s'adapter */
+      margin-right: 10px; /* Ajout d'un espace entre le logo et l'icône du menu */
+      margin-bottom : 20px; /* Ajout d'un espace entre le logo et l'icône du menu */
+      border-radius: 10px;}
+  
+    .logo-and-icon {
+      width: 100%;
+      justify-content: space-around; /* Espace entre le logo et l'icône du menu */
+      padding: 10px;
+    }
+  }
+   @media (max-width: 425px) {
+    .hamburger-icon {
+      display: block; /* Afficher le bouton hamburger uniquement pour les petits écrans */
+    }
+  
+    .horizontal-menu {
+      display: none; /* Masquer le menu horizontal sur les petits écrans */
+    }
+  
+    .menu {
+      position: absolute;
+      flex-direction: column; /* Pour les petits écrans, afficher les éléments en colonne */
+      top: 60px; /* Ajustement pour éviter de chevaucher le logo et le bouton hamburger */
+    }
+  
+    .menu-logo {
+      display: block; /* S'assurer que le logo est affiché dans le menu hamburger */
+      height: 32px; /* Réduire la taille du logo pour mieux s'adapter */
+      margin-right: 10px; /* Ajout d'un espace entre le logo et l'icône du menu */
+      margin-bottom : 20px; /* Ajout d'un espace entre le logo et l'icône du menu */
+      border-radius: 10px;}
+  
+    .logo-and-icon {
+      width: 100%;
+      justify-content: space-around; /* Espace entre le logo et l'icône du menu */
+      padding: 10px;
+    }
+  }
+   @media (max-width: 320px) {
+    .hamburger-icon {
+      margin-right: 3px;
       display: block; /* Afficher le bouton hamburger uniquement pour les petits écrans */
     }
   

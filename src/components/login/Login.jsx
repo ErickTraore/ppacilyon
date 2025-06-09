@@ -1,3 +1,5 @@
+// file= Full-live4/ppacilyon/src/components/login/Login.jsx
+
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
@@ -29,8 +31,7 @@ const Login = () => {
       console.log('Login response:', data);
 
       if (response.ok) {
-        // Dispatch the loginUser action
-        dispatch(loginUser(data.token));
+        localStorage.setItem("token", data.token); // ✅ Sauvegarde le token        dispatch(loginUser(data.token));
         if (data.redirectUrl) {
           window.location.href = data.redirectUrl; // Redirection vers la page de connexion
           window.location.reload();
